@@ -29,11 +29,21 @@ public class GlobalExceptionHandler {
             WebRequest request
     ) {
         final ErrorDetails errorDetails = new ErrorDetails();
-        errorDetails.setErrorCode(exception.getStatus().value());
         errorDetails.setErrorMessage(exception.getLocalizedMessage());
         errorDetails.setDevErrorMessage(request.getDescription(false));
         errorDetails.setTimestamp(System.currentTimeMillis());
-        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorDetails, HttpStatus.UNAUTHORIZED);
     }
 
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorDetails> handleGlobalException(
+            ReservationApiException exception,
+            WebRequest request
+    ) {
+        final ErrorDetails errorDetails = new ErrorDetails();
+        errorDetails.setErrorMessage(exception.getLocalizedMessage());
+        errorDetails.setDevErrorMessage(request.getDescription(false));
+        errorDetails.setTimestamp(System.currentTimeMillis());
+        return new ResponseEntity<>(errorDetails, HttpStatus.UNAUTHORIZED);
+    }
 }
