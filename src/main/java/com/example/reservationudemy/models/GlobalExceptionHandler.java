@@ -29,6 +29,7 @@ public class GlobalExceptionHandler {
             WebRequest request
     ) {
         final ErrorDetails errorDetails = new ErrorDetails();
+
         errorDetails.setErrorMessage(exception.getLocalizedMessage());
         errorDetails.setDevErrorMessage(request.getDescription(false));
         errorDetails.setTimestamp(System.currentTimeMillis());
@@ -46,4 +47,5 @@ public class GlobalExceptionHandler {
         errorDetails.setTimestamp(System.currentTimeMillis());
         return new ResponseEntity<>(errorDetails, HttpStatus.UNAUTHORIZED);
     }
+
 }

@@ -1,6 +1,5 @@
 package com.example.reservationudemy.services;
 
-import com.example.reservationudemy.entities.Bus;
 import com.example.reservationudemy.entities.BusRoute;
 
 import java.util.List;
